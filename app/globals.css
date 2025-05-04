@@ -1,3 +1,189 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  html,
+  body {
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    /* Animated gradient background */
+    background: linear-gradient(
+      270deg,
+      #e0e7ff,
+      #c7d2fe,
+      #a5b4fc,
+      #818cf8,
+      #6366f1,
+      #818cf8,
+      #a5b4fc,
+      #c7d2fe,
+      #e0e7ff
+    );
+    background-size: 1800% 1800%;
+    animation: gradientBG 24s ease-in-out infinite;
+  }
+
+  html {
+    font-size: 18px;
+  }
+  h1 {
+    @apply text-5xl md:text-6xl font-bold;
+  }
+  h2 {
+    @apply text-4xl md:text-5xl font-semibold;
+  }
+  h3 {
+    @apply text-3xl md:text-4xl font-semibold;
+  }
+  p {
+    @apply text-lg md:text-xl;
+  }
+  .btn {
+    @apply text-lg px-6 py-3;
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Card entrance animation */
+.animate-fadein {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Button hover/active effects */
+.btn-animated {
+  transition:
+    transform 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.15s;
+}
+.btn-animated:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.15);
+}
+.btn-animated:active {
+  transform: scale(0.97);
+}
+
+/* Input focus effect */
+.input-animated:focus {
+  box-shadow:
+    0 0 0 2px #6366f1,
+    0 1px 2px 0 rgba(99, 102, 241, 0.08);
+  border-color: #6366f1;
+}
+
+/* Floating SVG shapes */
+.floating-svg {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  animation: floatY 8s ease-in-out infinite alternate;
+}
+@keyframes floatY {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(30px);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
